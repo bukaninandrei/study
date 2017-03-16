@@ -7,20 +7,17 @@ module Bukanin
       end
 
       def search(array, query)
-        right = array.size
-        left = 0
+        r = search_bin(array, 0, array.size, query)
+        array[r] == query ? r : -1
+      end
 
-        loop do
-          break if left >= right
-          mid = left + (right - left) / 2
-          if query <= array[mid]
-            right = mid
-          else
-            left = mid + 1
-          end
-        end
+      def search_bin(array, left, right, query)
+        return right if left >= right
 
-        (array[right] == query) ? right : -1
+        mid = left + (right - left) / 2
+        query <= array[mid] ? right = mid : left = mid + 1
+
+        search_bin(array, left, right, query)
       end
     end
   end
