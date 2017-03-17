@@ -24,7 +24,7 @@ module Bukanin
       # Написать свою функцию my_compact
       def my_compact
         result = MyArray.new
-        my_each.each { |elem| result << elem if elem }
+        my_each.each { |elem| result << elem unless elem.nil? }
         result
       end
 
